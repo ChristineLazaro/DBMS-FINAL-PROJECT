@@ -1,0 +1,63 @@
+/* index.css */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+  }
+  
+  .homepage {
+    background-image: url('images/Wpage.png'); /* Add the path to your background image */
+    background-size: cover; /* Cover the entire background */
+    background-position: center; /* Center the background image */
+    background-repeat: no-repeat; /* Prevent the background image from repeating */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  
+  }
+  
+  
+  /* Styles for text inside the homepage */
+  .homepage .content {
+    text-align: center; /* Center align the text */
+    color: #fff; /* Change text color */
+  }
+  
+  .homepage h1 {
+    font-size: 36px; /* Adjust font size for the heading */
+    margin-bottom: 20px; /* Add some space below the heading */
+  }
+  
+  .homepage p {
+    font-size: 20px; /* Adjust font size for paragraph */
+    line-height: 1.5; /* Adjust line height for better readability */
+  }
+  
+  
+  .homepage .content .text {
+    margin-bottom: 50px;
+    color: #fff;
+    font-size: 20px;
+    text-align: center;
+    text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+  }
+  
+  .content a {
+    color: #000;
+    display: inline-block;
+    font-size: 18px;
+    margin: 0 10px;
+    padding: 10px 30px;
+    border-radius: 5px;
+    background: #fff;
+    border: 2px solid #fff;
+    transition: 0.4s ease;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    text-decoration: none;
+  }
+  
+  .content a:hover {
+   color: #fff;
+    background: rgba(255,255,255,0.3); 
+  }
