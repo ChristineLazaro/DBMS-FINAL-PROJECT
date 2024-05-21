@@ -2,6 +2,7 @@ const formPopup = document.querySelector(".form-popup");
 const hidePopupBtn = formPopup.querySelector(".close-btn");
 const signupLoginLink = formPopup.querySelectorAll(".bottom-link a");
 
+
 // Show login popup
 document.addEventListener("DOMContentLoaded", () => {
     document.body.classList.toggle("show-popup");
@@ -19,3 +20,7 @@ signupLoginLink.forEach(link => {
         formPopup.classList[link.id === 'signup-link' ? 'add' : 'remove']("show-signup");
     });
 });
+
+
+
+
