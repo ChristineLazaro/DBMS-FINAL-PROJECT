@@ -12,18 +12,30 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="recipes.css" />
- 
 
     <style>
         .card {
             cursor: pointer; /* Change cursor to pointer when hovering over cards */
         }
-        </style>
-        
 
+        /* Style for the back button */
+        .back-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 9999;
+            padding: 10px;
+            color: black;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        </style>
 
 </head>
   <body>
+    
     <div class="container swiper">
       <div class="slide-container">
         <div class="card-wrapper swiper-wrapper">
@@ -97,12 +109,19 @@
           </div>
         </div>
       </div>
+    
       <div class="swiper-button-next swiper-navBtn"></div>
       <div class="swiper-button-prev swiper-navBtn"></div>
       <div class="swiper-pagination"></div>
-    </div>
+       <!-- Back button -->
+    
+    <div class="back-btn" onclick="window.history.back()">✖</div>
 
+    </div>
+   
     <script src="sb-min.js"></script>
     <script src="recipes.js"></script>
+
+   
   </body>
 </html>

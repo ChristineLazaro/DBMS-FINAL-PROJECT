@@ -80,3 +80,17 @@ body {
 }
 
 
+/* Back button */
+.back-button {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  font-size: 20px;
+  color: black;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+.back-button:hover {
+  opacity: 0.8;
+}

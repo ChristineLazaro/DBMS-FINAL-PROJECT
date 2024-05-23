@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<!-- Created By CodingNepal - www.codingnepalweb.com -->
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+   <title> Responsive Contact Us Form | CodingLab </title>
+    <link rel="stylesheet" href="contact.css">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+     <script type="text/javascript">
+       (function() {
+        emailjs.init("BZcfakBJKl1_8mCM7");    
+       })();
+     </script>
+   </head>
+<body>
+  <div class="container">
+    <div class="content">
+      <div class="image-box">
+       <img src="c.png" alt="">
+      </div>
+      <div class="back-btn" onclick="window.history.back()">✖</div>
+      <form id="contact-form" action="https://script.google.com/macros/s/AKfycbzEteUm-6pIzLw0uc9ZyUtPh-Tf63jkd4YmtZRqOVcb1DcNeZ78NJcrNH61rcYXNe8A/exec" method="post">
+      <div class="topic">Send us a message</div>
+      <div class="input-box">
+        <input type="text" name="name" required>
+        <label>Enter your name</label>
+      </div>
+      <div class="input-box">
+        <input type="email" name="email" required>
+        <label>Enter your email</label>
+      </div>
+      <div class="message-box">
+        <textarea name="message" required></textarea>
+        <label>Enter your message</label>
+      </div>
+      <div class="input-box">
+        <input type="submit" value="Send Message">
+      </div>
+    </form>
+  </div>
+  </div>
+</body>
+</html>
