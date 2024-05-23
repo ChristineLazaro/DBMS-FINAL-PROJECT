@@ -1,5 +1,3 @@
-// We enclose this in window.onload.
-// So we don't have ridiculous errors.
 window.onload = function() {
    // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -33,7 +31,7 @@ const firebaseConfig = {
       }
       // create_title() is used to create the title
       create_title(){
-        // This is the title creator. 🎉
+        
         var title_container = document.createElement('div')
         title_container.setAttribute('id', 'title_container')
         var title_inner_container = document.createElement('div')
@@ -45,13 +43,11 @@ const firebaseConfig = {
   
         title_inner_container.append(title)
         title_container.append(title_inner_container)
-        document.body.append(title_container)
-
-        
+        document.body.append(title_container)   
       }
-      // create_join_form() creates the join form
+    
       create_join_form(){
-        // YOU MUST HAVE (PARENT = THIS). OR NOT. I'M NOT YOUR BOSS!😂
+       
         var parent = this;
   
         var join_container = document.createElement('div')
