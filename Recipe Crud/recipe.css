@@ -1,57 +1,126 @@
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 100vh;
-    background-color: burlywood; 
-  }
-  
-  .container {
-    text-align: center;
-  }
-  
-  .title {
-    margin-top: 20px;
-  }
-  
-  .button-group {
-    position: fixed;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    margin-top: 80px;
-    cursor: pointer;
-  
-  }
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  background-color: burlywood; 
+}
 
-  .button-group :hover {
-    background-color: burlywood;
-  }
+.container {
+  text-align: center;
+}
+
+.title {
+  margin-top: 20px;
+}
+
+.button-group {
+  top: 0;
+  left: 50%;
+  margin-left: 45%;
+  transform: translateX(-50%);
+  margin-top: 10px;
+  cursor: pointer;
+  padding: 5px 20px; /* Increased padding for a bigger size */
+  font-size: 20px; /* Increased font size */
+}
 
 
-  .slider-container {
-    width: 100%;
-    overflow-y: scroll; /* Changed to allow vertical scroll */
-    height: calc(100vh - 160px); /* Adjusted height */
-    margin-top: 65px;
 
-  }
-  
-  .slider {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .slide {
-    width: 100%;
-    margin-bottom: 20px;
-  }
-  
-  img {
-    max-width: 100%;
-    height: auto;
-  }
-  
+/* Adjust the styles for individual buttons */
+#uploadButton,
+#deleteButton {
+  padding: 10px 20px; /* Increased padding for the buttons */
+  font-size: 12px;
+  margin-top: 5%;
+  border: none; /* Removed border */
+  border-radius: 10px; /* Added border-radius for rounded corners */
+  cursor: pointer;
+  align-items: center;
+  transition: background-color 0.3s; /* Increased font size for the buttons */
+}
+
+#uploadButton:hover,
+#deleteButton:hover {
+  background-color: gray; /* Darker green color on hover */
+}
+
+/* Adjust the styles for the "Choose File" button */
+#fileInput {
+  width: 100%;
+  padding: 15px 20px; /* Increased padding for the button */
+  font-size: 16px; /* Increased font size for the button */
+  border: none; /* Removed border */
+  border-radius: 10px; /* Added border-radius for rounded corners */
+  background-color: rgba(185, 142, 87, 0.799); /* Green button color */
+  color: white; /* White text color */
+  cursor: pointer;
+}
+
+#fileInput:hover {
+  background-color: #a06c45c5; /* Darker green color on hover */
+}
+
+
+.slider-container {
+  width: 100%;
+  overflow-y: scroll;
+  height: calc(100vh - 160px);
+  margin-top: 20px;
+  position: relative;
+}
+
+.slider {
+  display: flex;
+  flex-direction: column;
+}
+
+.slide {
+  width: 100%;
+  position: relative;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  width: 100%;
+}
+
+.image-container {
+  position: relative;
+  width: 90%;
+  margin: 0 auto; /* Center the container horizontally */
+  display: flex; /* Enable flexbox */
+  justify-content: center; /* Center the items horizontally */
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.delete-checkbox {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 20px;
+  height: 20px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+/* Back button styling */
+.back-btn {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  font-size: 20px;
+  color: #fff;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+
+
+

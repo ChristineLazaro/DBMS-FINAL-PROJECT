@@ -1,22 +1,147 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Recipe Image Upload</title>
-  <link rel="stylesheet" href="recipe.css">
-</head>
-<body>
-  <div class="container">
-    <h1 class="title">Share Your Own Recipe by Uploading Image</h1>
-    <div class="button-group">
-      <input type="file" id="fileInput" accept="image/*" multiple>
-      <button onclick="uploadImages()">Upload</button>
-      <button onclick="deleteImage()">Delete Selected Image</button>
-    </div>
-  </div>
-  <div id="imageSlider" class="slider-container"></div>
 
-  <script src="recipe.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Image Upload</title>
+    <link rel="stylesheet" href="recipe.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <h1 class="title">Share Your Own Recipe by Uploading Image</h1>
+        <div class="button-group">
+            <input type="file" id="fileInput" accept="image/*" multiple>
+            <button id="uploadButton">Upload</button>
+            <button id="deleteButton">Delete Selected Images</button>
+        </div>
+    </div>
+    <div id="imageSlider" class="slider-container"></div>
+
+    <div class="back-btn" onclick="window.history.back()">✖</div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
+        import { getDatabase, ref, set, child, onValue, remove, push } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-database.js";
+        import { getStorage, ref as sRef, uploadBytesResumable, getDownloadURL, deleteObject } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-storage.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyDhPTloN-MAPmgwLlZ13bTg9U5Quil0CLU8",
+            authDomain: "dbms-final-project-469de.firebaseapp.com",
+            databaseURL: "https://dbms-final-project-469de-default-rtdb.firebaseio.com",
+            projectId: "dbms-final-project-469de",
+            storageBucket: "dbms-final-project-469de.appspot.com",
+            messagingSenderId: "505906430127",
+            appId: "1:505906430127:web:9945dc606c7b1c6b8c145a"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+        const storage = getStorage(app);
+        const imageSlider = document.getElementById("imageSlider");
+
+        function uploadImages() {
+            const fileInput = document.getElementById('fileInput');
+            const files = fileInput.files;
+
+            console.log('Uploading images:', files); // Debugging log
+
+            Array.from(files).forEach(file => {
+                const uniqueKey = push(child(ref(db), 'Recipes')).key;
+                const storageRef = sRef(storage, 'recipes/' + uniqueKey);
+                const uploadTask = uploadBytesResumable(storageRef, file);
+
+                uploadTask.on('state_changed',
+                    (snapshot) => {
+                        // Handle progress
+                    },
+                    (error) => {
+                        console.error('Upload failed:', error);
+                    },
+                    () => {
+                        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+                            console.log('File available at', downloadURL); // Debugging log
+                            set(child(ref(db, 'Recipes'), uniqueKey), {
+                                url: downloadURL,
+                                key: uniqueKey
+                            });
+                            displayImage(uniqueKey, downloadURL);
+                        });
+                    }
+                );
+            });
+        }
+
+        function displayImage(key, url) {
+            const imgContainer = document.createElement('div');
+            imgContainer.setAttribute('class', 'image-container');
+            imgContainer.setAttribute('data-key', key);
+
+            const img = document.createElement('img');
+            img.setAttribute('src', url);
+            img.setAttribute('alt', 'Recipe Image');
+
+            const checkbox = document.createElement('input');
+            checkbox.setAttribute('type', 'checkbox');
+            checkbox.setAttribute('class', 'delete-checkbox');
+
+            imgContainer.appendChild(img);
+            imgContainer.appendChild(checkbox);
+            imageSlider.appendChild(imgContainer);
+        }
+
+        function deleteImages() {
+            const checkboxes = document.querySelectorAll('.delete-checkbox:checked');
+
+            checkboxes.forEach(checkbox => {
+                const imgContainer = checkbox.parentElement;
+                const key = imgContainer.getAttribute('data-key');
+
+                const storageRef = sRef(storage, 'recipes/' + key);
+                deleteObject(storageRef).then(() => {
+                    console.log('Deleted from storage'); // Debugging log
+                }).catch(error => {
+                    console.error('Error deleting from storage:', error);
+                });
+
+                remove(ref(db, 'Recipes/' + key)).then(() => {
+                    console.log('Deleted from database'); // Debugging log
+                    imgContainer.remove();
+                }).catch(error => {
+                    console.error('Error deleting from database:', error);
+                });
+            });
+        }
+
+        window.uploadImages = uploadImages;
+        window.deleteImages = deleteImages;
+
+        function goBack() {
+            window.location.href = 'main.html'; // Redirect to main.html
+        }
+
+                window.onload = function () {
+                    onValue(ref(db, 'Recipes'), (snapshot) => {
+                        const images = snapshot.val();
+                        if (images) {
+                            imageSlider.innerHTML = ''; // Clear existing images
+                            Object.keys(images).forEach(key => {
+                                displayImage(key, images[key].url);
+                            });                            
+                        }              
+                    });
+        };
+         
+
+        document.getElementById("uploadButton").addEventListener("click", uploadImages);
+        document.getElementById("deleteButton").addEventListener("click", deleteImages);
+    </script>
+
 </body>
+
 </html>
