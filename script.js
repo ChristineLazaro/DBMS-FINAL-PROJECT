@@ -30,5 +30,24 @@ signupLoginLink.forEach(link => {
     });
 });
 
+document.addEventListener("DOMContentLoaded", () => {
+    console.log('script.js loaded');
+
+    const logoutBtn = document.querySelector('.logout-btn');
+
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', () => {
+            alert('Logout button clicked');
+            const userConfirmed = confirm('Are you sure you want to logout?');
+            if (userConfirmed) {
+                window.location.href = 'index.html';
+            } else {
+                window.location.href = 'main.html';
+            }
+        });
+    } else {
+        console.log('Logout button not found');
+    }
+});
 
 

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recipe Image Upload</title>
+  <link rel="stylesheet" href="recipe.css">
+</head>
+<body>
+  <div class="container">
+    <h1 class="title">Share Your Own Recipe by Uploading Image</h1>
+    <div class="button-group">
+      <input type="file" id="fileInput" accept="image/*" multiple>
+      <button onclick="uploadImages()">Upload</button>
+      <button onclick="deleteImage()">Delete Selected Image</button>
+    </div>
+  </div>
+  <div id="imageSlider" class="slider-container"></div>
+
+  <script src="recipe.js"></script>
+</body>
+</html>

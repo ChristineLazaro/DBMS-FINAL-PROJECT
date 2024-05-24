@@ -92,24 +92,34 @@ body{
 }
 
 
-#join_button_container{
+#join_button_container {
     width: 100%;
     height: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
     float: left;
-    
 }
 
-#join_button{
+#join_button {
     width: 60%;
     height: 40px;
     font-family: Varela Round;
     font-size: 15px;
     font-weight: bold;
     text-align: center;
-    color: #ffffffd8;
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0.566);
+}
+
+
+#join_button:hover {
+    background-color: burlywood; /* Change color on hover */
+}
+
+#join_button:focus {
+    /* Adjust background color when focused */
+    background-color: rgba(255, 255, 255, 0.564);
 }
 
 #chat_container{

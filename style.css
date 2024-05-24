@@ -113,6 +113,7 @@ header {
     border-radius: 3px;
     cursor: pointer;
     transition: 0.15s ease;
+    text-decoration: none;
 }
 
 .navbar .logout-btn:hover {
@@ -204,3 +205,4 @@ header {
         padding: 30px 20px;
     }
 }
+
